@@ -1,0 +1,28 @@
+{
+  "name": "twitter-bot-server",
+  "version": "1.0.0",
+  "description": "Twitter Bot Server Server",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Ken Takagi",
+  "license": "ISC",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {
+    "express": "^4.15.2",
+    "node-uuid": "1.4.7",
+    "ws": "^2.2.0",
+    "twitter": "^1.2.0"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "node-uuid": "1.4.7",
+    "ws": "^2.2.0",
+    "twitter": "^1.2.0"
+  }
+}
