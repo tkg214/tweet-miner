@@ -5,7 +5,10 @@ require('../styles/application.scss');
 
 // Render the top-level React component
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App.jsx'
 
-ReactDOM.render(<App />, document.getElementById('react-root'));
+import Layout from './components/Layout.jsx';
+
+ReactDOM.render(
+  <Provider store={store}><Layout /></Provider>,
+  document.getElementById('react-root')
+);
