@@ -5,13 +5,14 @@
   "scripts": {
     "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tkg214/twitter-bot.git"
+  },
   "author": "Ken Takagi",
   "license": "ISC",
   "engines": {
     "node": ">=6.0.0"
-  },
-  "scripts": {
-    "start": "node server.js"
   },
   "devDependencies": {
     "express": "^4.15.2",
@@ -21,8 +22,9 @@
   },
   "dependencies": {
     "express": "^4.15.2",
+    "lodash": "^4.17.4",
     "node-uuid": "1.4.7",
-    "ws": "^2.2.0",
-    "twitter": "^1.2.0"
+    "twitter": "^1.2.0",
+    "ws": "^2.2.0"
   }
 }
