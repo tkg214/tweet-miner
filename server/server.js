@@ -14,7 +14,7 @@ const tweet = new twitter(config.twitter);
 
 const wss = new SocketServer({ server });
 
-const query = 'tokyo'
+const query = 'america'
 
 wss.on('connection', (ws) => {
   console.log('Client connected');

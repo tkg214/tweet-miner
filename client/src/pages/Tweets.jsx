@@ -22,7 +22,7 @@ class Tweets extends Component {
     };
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      TweetActions.addTweet(tweet);
+      TweetActions.addTweet(data);
     }
   }
 
@@ -36,7 +36,7 @@ class Tweets extends Component {
 
   getTweets() {
     this.setState({
-      tweets: TweetStore.getAll();
+      tweets: TweetStore.getAll()
     });
   }
 
@@ -45,15 +45,13 @@ class Tweets extends Component {
   }
 
   render() {
-    const { tweets } = this.state;
-    const TweetComponents = tweets.map( (tweet) => {
-      return <Tweet key={tweet.twid} {...tweet}/>
-    });
+    console.log(this.state.tweets);
 
     return (
       <div>
+        <h1>Tweets</h1>
         <button onClick={this.loadTweets.bind(this)}>Load Tweets</button>
-        <ul>{TweetComponents}</ul>
+        <Tweet tweets={this.state.tweets}/>
       </div>
     );
   }

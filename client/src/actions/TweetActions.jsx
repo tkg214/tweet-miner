@@ -1,4 +1,4 @@
-import dispatcher from '../dispatcher';
+import dispatcher from '../dispatcher.jsx';
 
 export function addTweet(tweet) {
   dispatcher.dispatch({
@@ -8,5 +8,5 @@ export function addTweet(tweet) {
 }
 
 export function loadTweets() {
-  dispatcher.dispatch({type: 'FETCH_TODO'});
+  dispatcher.dispatch({type: 'FETCH_TWEET'});
 }

@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import dispatcher from '../dispatcher';
+import dispatcher from '../dispatcher.jsx';
 
 class TweetStore extends EventEmitter {
 
@@ -11,7 +11,7 @@ class TweetStore extends EventEmitter {
         author: 'ken',
         screenname: 'takagi',
         // avatar: data.user.profile_image_url,
-        body: data.text
+        body: 'text text text'
         // date: data.created_at,
         // location: data.user.location
       },
@@ -37,8 +37,11 @@ class TweetStore extends EventEmitter {
 
   handleActions(action) {
     switch(action.type) {
-      case 'RECEIVE_TWEETS': {
-        this.tweets = action.tweets;
+      case 'ADD_TWEET': {
+        this.addTweet(action.tweet);
+        break;
+      }
+      case 'FETCH_TWEET': {
         this.emit('change');
         break;
       }
