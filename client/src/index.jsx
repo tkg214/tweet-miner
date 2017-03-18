@@ -5,10 +5,18 @@ require('../styles/application.scss');
 
 // Render the top-level React component
 import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
-import Layout from './components/Layout.jsx';
+import Layout from './pages/Layout.jsx';
+import Tweets from './pages/Tweets.jsx';
+
+const app = document.getElementById('react-root');
 
 ReactDOM.render(
-  <Provider store={store}><Layout /></Provider>,
-  document.getElementById('react-root')
+  <Router history={hashHistory}>
+    <Route path='/' component={Layout}>
+      <IndexRoute component={Tweets}></IndexRoute>
+    </Route>
+  </Router>
 );
