@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import Tweet from '../components/Tweet.jsx';
 import * as TweetActions from '../actions/TweetActions.jsx';
 import TweetStore from '../stores/TweetStore.jsx'
@@ -12,6 +13,19 @@ class Tweets extends Component {
     };
   }
 
+  componentDidMount() {
+    const self = this;
+
+    this.socket = new WebSocket('ws://localhost:3001/socketserver');
+    this.socket.onopen = (event) => {
+      console.log('Connected to Server');
+    };
+    this.socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      TweetActions.addTweet(tweet);
+    }
+  }
+
   componentWillMount() {
     TweetStore.on('change', this.getTweets);
   }
@@ -21,8 +35,8 @@ class Tweets extends Component {
   }
 
   getTweets() {
-    this.SetState({
-      tweets: TweetStore.getAll(),
+    this.setState({
+      tweets: TweetStore.getAll();
     });
   }
 
@@ -36,36 +50,13 @@ class Tweets extends Component {
       return <Tweet key={tweet.twid} {...tweet}/>
     });
 
-    return {
+    return (
       <div>
         <button onClick={this.loadTweets.bind(this)}>Load Tweets</button>
         <ul>{TweetComponents}</ul>
       </div>
-    }
+    );
   }
-
 }
 
-// componentDidMount() {
-//   const self = this;
-//
-//   this.socket = new WebSocket('ws://localhost:3001/socketserver');
-//   this.socket.onopen = (event) => {
-//     console.log('Connected to Server');
-//   };
-//   this.socket.onmessage = (event) => {
-//     const data = JSON.parse(event.data);
-//     self.addTweet(data);
-//   }
-// }
-//
-// addTweet(tweet) {
-//   const newTweets = this.state.newTweets;
-//   newTweets.unshift(tweet);
-//   this.setState({ newTweets });
-// }
-//
-// this.state = {
-//   tweets: [],
-//   count: 0,
-//   newTweets: []
+export default Tweets;

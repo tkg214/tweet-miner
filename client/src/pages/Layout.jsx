@@ -6,11 +6,11 @@ class Layout extends Component {
   render() {
     const { location } = this.props;
 
-    return {
+    return (
       <div>
-        {this.props.childrem}
+        {this.props.children}
       </div>
-    }
+    );
   }
 
 };

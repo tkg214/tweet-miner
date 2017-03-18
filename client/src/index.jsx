@@ -18,5 +18,5 @@ ReactDOM.render(
     <Route path='/' component={Layout}>
       <IndexRoute component={Tweets}></IndexRoute>
     </Route>
-  </Router>
-);
+  </Router>,
+app);
