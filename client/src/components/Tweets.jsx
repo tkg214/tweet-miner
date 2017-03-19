@@ -4,6 +4,7 @@ import TweetContainer from './layout/TweetContainer.jsx';
 import * as TweetActions from '../actions/TweetActions.jsx';
 import TweetStore from '../stores/TweetStore.jsx';
 import InputStore from '../stores/InputStore.jsx';
+import UtilityStore from '../stores/UtilityStore.jsx';
 
 class Tweets extends Component {
 
@@ -11,6 +12,7 @@ class Tweets extends Component {
     super();
     this.getTweets = this.getTweets.bind(this);
     this.sendQuery = this.sendQuery.bind(this);
+    this.stopStream = this.stopStream.bind(this);
 
     this.state = {
       tweets: TweetStore.getAll()
@@ -34,11 +36,13 @@ class Tweets extends Component {
   componentWillMount() {
     TweetStore.on('change', this.getTweets);
     InputStore.on('change', this.sendQuery);
+    UtilityStore.on('change', this.stopStream);
   }
 
   componentWillUnmount() {
     TweetStore.removeListener('change', this.getTweets);
     InputStore.removeListener('change', this.sendQuery);
+    UtilityStore.removeListener('change', this.stopStream);
   }
 
   getTweets() {
@@ -52,8 +56,11 @@ class Tweets extends Component {
     this.socket.send(JSON.stringify(InputStore.getQuery()));
   }
 
-  render() {
+  stopStream() {
+    this.socket.close(1000, 'Stopping Stream');
+  }
 
+  render() {
     return (
       <div>
         <TweetContainer tweets={this.state.tweets}/>

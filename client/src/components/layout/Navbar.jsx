@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as TweetActions from '../../actions/TweetActions.jsx';
 import * as InputActions from '../../actions/InputActions.jsx';
+import * as UtilityActions from '../../actions/UtilityActions.jsx';
+
 import TweetStore from '../../stores/TweetStore.jsx';
 
 class Navbar extends Component {
@@ -34,6 +36,10 @@ class Navbar extends Component {
     });
   }
 
+  stopRequest() {
+    UtilityActions.stopRequest();
+  }
+
   render() {
     return (
       <nav className='navbar'>
@@ -45,6 +51,10 @@ class Navbar extends Component {
           onKeyUp={this.sendQuery.bind(this)}
         />
         <span className='navbar-tweetcount'>{this.state.count}</span>
+        <button
+          className='navbar-stop'
+          onClick={this.stopRequest.bind(this)}
+          >Stop</button>
       </nav>
     )
   }

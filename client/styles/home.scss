@@ -23,7 +23,6 @@ h4 {
   .navbar-brand, .navbar-tweetcount {
     color: rgb(255, 255, 255);
     display: block;
-    float: left;
     font-weight: 700;
     font-size: 28px;
     line-height: 60px;
@@ -39,12 +38,25 @@ h4 {
     float: right;
   }
 
+  .navbar-stop {
+    background-color: rgb(219, 49, 3);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    display: block;
+    float: right;
+    font-weight: 700;
+    font-size: 28px;
+    padding: 5px;
+    margin: 5.75px;
+  }
+
   .input-query {
     border: 1px solid black;
     display: block;
     float: right;
     height: 40px;
-    margin: 5px;
+    margin: 5.75px;
     padding: 0 10px;
   }
 }
@@ -53,6 +65,12 @@ h4 {
   margin-top: 61.5px;
   overflow: auto;
   width: 40%;
+}
+
+.stop-button {
+  position: fixed;
+  float: right;
+  margin-top: 70px;
 }
 
 .tweet {

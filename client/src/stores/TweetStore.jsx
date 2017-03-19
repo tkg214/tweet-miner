@@ -61,6 +61,7 @@ class TweetStore extends EventEmitter {
       case 'ADD_COUNT': {
         this.addCount();
         this.emit('change');
+        break;
       }
     }
   }
