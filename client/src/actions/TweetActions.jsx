@@ -7,6 +7,8 @@ export function addTweet(tweet) {
   });
 }
 
-export function loadTweets() {
-  dispatcher.dispatch({type: 'FETCH_TWEET'});
+export function addCount() {
+  dispatcher.dispatch({
+    type: 'ADD_COUNT'
+  });
 }

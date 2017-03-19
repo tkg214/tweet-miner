@@ -7,32 +7,28 @@ class TweetStore extends EventEmitter {
     super();
     this.tweets = [
       {
-        twid: 1234,
-        author: 'ken',
-        screenname: 'takagi',
-        // avatar: data.user.profile_image_url,
-        body: 'text text text'
-        // date: data.created_at,
-        // location: data.user.location
-      },
-      {
-        twid: 1235,
-        author: 'ken',
-        screenname: 'takagi',
-        // avatar: data.user.profile_image_url,
-        body: 'test test test test'
-        // date: data.created_at,
-        // location: data.user.location
+        twid: '',
+        country_code: ''
       }
     ];
+    this.count = 0;
   }
 
   getAll() {
     return this.tweets;
   }
 
+  getCount() {
+    return this.count;
+  }
+
+  addCount() {
+    this.count++;
+  }
+
   addTweet(tweet) {
     this.tweets.unshift(tweet);
+    //
   }
 
   handleActions(action) {
@@ -41,9 +37,10 @@ class TweetStore extends EventEmitter {
         this.addTweet(action.tweet);
         break;
       }
-      case 'FETCH_TWEET': {
+
+      case 'ADD_COUNT': {
+        this.addCount();
         this.emit('change');
-        break;
       }
     }
   }

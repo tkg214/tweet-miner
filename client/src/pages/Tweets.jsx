@@ -8,8 +8,11 @@ class Tweets extends Component {
   constructor() {
     super();
     this.getTweets = this.getTweets.bind(this);
+    this.getCount = this.getCount.bind(this);
+
     this.state = {
-      tweets: TweetStore.getAll()
+      tweets: TweetStore.getAll(),
+      count: TweetStore.getCount()
     };
   }
 
@@ -23,15 +26,18 @@ class Tweets extends Component {
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
       TweetActions.addTweet(data);
+      TweetActions.addCount();
     }
   }
 
   componentWillMount() {
     TweetStore.on('change', this.getTweets);
+    TweetStore.on('change', this.getCount);
   }
 
   componentWillUnmount() {
     TweetStore.removeListener('change', this.getTweets);
+    TweetStore.removeListener('change', this.getCount);
   }
 
   getTweets() {
@@ -40,17 +46,19 @@ class Tweets extends Component {
     });
   }
 
-  loadTweets() {
-    TweetActions.loadTweets();
+  getCount() {
+    this.setState({
+      count: TweetStore.getCount()
+    });
   }
 
   render() {
-    console.log(this.state.tweets);
 
     return (
       <div>
         <h1>Tweets</h1>
-        <button onClick={this.loadTweets.bind(this)}>Load Tweets</button>
+        {/* <input on */}
+        <h2>{this.state.count}</h2>
         <Tweet tweets={this.state.tweets}/>
       </div>
     );

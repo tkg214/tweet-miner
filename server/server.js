@@ -10,21 +10,22 @@ const server = express()
   .use(express.static('public'))
   .listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${ PORT }`));
 
-const tweet = new twitter(config.twitter);
-
 const wss = new SocketServer({ server });
 
-const query = 'america'
+const query = 'donald trump'
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
 
-  tweet.stream('statuses/filter', {track: query}, (stream) => {
-    streamerHandler(stream, wss);
+  ws.on('message', (message) => {
+    // query = message
+    new twitter(config.twitter).stream('statuses/filter', {track: query}, (stream) => {
+      streamerHandler(stream, ws);
+    });
   });
 
   ws.on('close', () => {
     console.log('Client disconnected');
-  })
+  });
 
 });

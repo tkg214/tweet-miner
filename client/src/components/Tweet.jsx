@@ -10,7 +10,7 @@ class Tweet extends Component {
     return (
       <div>
         {this.props.tweets.map( (tweet) => {
-          return <li>{tweet.author}</li>
+          return <li key={tweet.twid}>{tweet.country_code}</li>
         })};
       </div>
 
