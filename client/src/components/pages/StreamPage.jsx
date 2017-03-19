@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import Tweet from './Tweet.jsx';
-import TweetContainer from './layout/TweetContainer.jsx';
-import * as TweetActions from '../actions/TweetActions.jsx';
-import TweetStore from '../stores/TweetStore.jsx';
-import InputStore from '../stores/InputStore.jsx';
-import UtilityStore from '../stores/UtilityStore.jsx';
+import TweetContainer from '../layout/TweetContainer.jsx';
+import * as TweetActions from '../../actions/TweetActions.jsx';
+import TweetStore from '../../stores/TweetStore.jsx';
+import InputStore from '../../stores/InputStore.jsx';
+import UtilityStore from '../../stores/UtilityStore.jsx';
 
-class Tweets extends Component {
+class StreamPage extends Component {
 
   constructor() {
     super();
@@ -69,4 +68,4 @@ class Tweets extends Component {
   }
 }
 
-export default Tweets;
+export default StreamPage;
