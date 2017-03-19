@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import Footer from './Footer.jsx';
+import Tweets from '../Tweets.jsx';
 
 class Layout extends Component {
 
   render() {
-    const { location } = this.props;
-
     return (
       <div>
-        {this.props.children}
+        <Tweets/>
+        <Footer/>
       </div>
     );
   }

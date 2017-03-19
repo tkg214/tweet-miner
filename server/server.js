@@ -12,20 +12,20 @@ const server = express()
 
 const wss = new SocketServer({ server });
 
-const query = 'donald trump'
-
 wss.on('connection', (ws) => {
   console.log('Client connected');
 
   ws.on('message', (message) => {
-    // query = message
+    let query = JSON.parse(message);
+    console.log('Query received: ', query)
+
     new twitter(config.twitter).stream('statuses/filter', {track: query}, (stream) => {
       streamerHandler(stream, ws);
+
+      ws.on('close', () => {
+        console.log('Client disconnected');
+        stream.destroy();
+      })
     });
   });
-
-  ws.on('close', () => {
-    console.log('Client disconnected');
-  });
-
 });

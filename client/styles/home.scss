@@ -1,5 +1,5 @@
 h1 {
-  color: tomato;
+  color: rgb(3, 88, 143);
 }
 
 body {
@@ -10,8 +10,8 @@ body {
   margin: 70px 0;
 }
 
-.chatbar {
-  background: tomato;
+.input-bar {
+  background: rgb(3, 88, 143);
   border-top: 1px solid black;
   bottom: 0;
   display: flex;
@@ -21,8 +21,7 @@ body {
   right: 0;
 }
 
-.chatbar-message,
-.chatbar-username {
+.input-query {
   border: 1px solid black;
   display: block;
   height: 40px;
@@ -31,12 +30,8 @@ body {
   padding: 0 9px;
 }
 
-.chatbar-message {
+.input-query {
   flex: 8;
-}
-
-.chatbar-username {
-  flex: 2;
 }
 
 .message {
@@ -70,57 +65,12 @@ body {
   color: blue;
 }
 
-.message-username-2 {
-  flex: 2;
-  font-weight: 700;
-  overflow: hidden;
-  margin: 5px;
-  padding: 0 10px;
-  color: green;
-}
-
-.message-username-3 {
-  flex: 2;
-  font-weight: 700;
-  overflow: hidden;
-  margin: 5px;
-  padding: 0 10px;
-  color: orange;
-}
-
-.message-username-4 {
-  flex: 2;
-  font-weight: 700;
-  overflow: hidden;
-  margin: 5px;
-  padding: 0 10px;
-  color: red;
-}
-
-.message-username-5 {
-  flex: 2;
-  font-weight: 700;
-  overflow: hidden;
-  margin: 5px;
-  padding: 0 10px;
-  color: pink;
-}
-
-.message-username-6 {
-  flex: 2;
-  font-weight: 700;
-  overflow: hidden;
-  margin: 5px;
-  padding: 0 10px;
-  color: purple;
-}
-
 .message-content {
   flex: 8;
 }
 
 .navbar {
-  background: tomato;
+  background: rgb(3, 88, 143);
   border-bottom: 1px solid black;
   height: 60px;
   left: 0;

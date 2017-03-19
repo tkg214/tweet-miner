@@ -2,8 +2,12 @@ module.exports = function(stream, ws) {
 
   stream.on('data', (data) => {
     const tweet = {
-      twid: data.id_str
-      // country_code: data.place.country_code
+      twid: data.id_str,
+      name: data.user.name ? data.user.name : '',
+      screen_name: data.user.screen_name ? data.user.screen_name : '',
+      followers_count: data.user.followers_count,
+      text: data.text ? data.text : '',
+      location: data.location ? data.location : ''
     }
 
     ws.send(JSON.stringify(tweet));

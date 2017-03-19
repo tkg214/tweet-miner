@@ -8,7 +8,10 @@ class TweetStore extends EventEmitter {
     this.tweets = [
       {
         twid: '',
-        country_code: ''
+        name: '',
+        screen_name: '',
+        followers_count: 0,
+        location: ''
       }
     ];
     this.count = 0;
@@ -16,6 +19,10 @@ class TweetStore extends EventEmitter {
 
   getAll() {
     return this.tweets;
+  }
+
+  addTweet(tweet) {
+    this.tweets.unshift(tweet);
   }
 
   getCount() {
@@ -26,18 +33,12 @@ class TweetStore extends EventEmitter {
     this.count++;
   }
 
-  addTweet(tweet) {
-    this.tweets.unshift(tweet);
-    //
-  }
-
   handleActions(action) {
     switch(action.type) {
       case 'ADD_TWEET': {
         this.addTweet(action.tweet);
         break;
       }
-
       case 'ADD_COUNT': {
         this.addCount();
         this.emit('change');

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Tweet from '../components/Tweet.jsx';
+import Tweet from './Tweet.jsx';
 import * as TweetActions from '../actions/TweetActions.jsx';
-import TweetStore from '../stores/TweetStore.jsx'
+import TweetStore from '../stores/TweetStore.jsx';
+import InputStore from '../stores/InputStore.jsx';
 
 class Tweets extends Component {
 
@@ -9,6 +10,7 @@ class Tweets extends Component {
     super();
     this.getTweets = this.getTweets.bind(this);
     this.getCount = this.getCount.bind(this);
+    this.sendQuery = this.sendQuery.bind(this);
 
     this.state = {
       tweets: TweetStore.getAll(),
@@ -33,11 +35,13 @@ class Tweets extends Component {
   componentWillMount() {
     TweetStore.on('change', this.getTweets);
     TweetStore.on('change', this.getCount);
+    InputStore.on('change', this.sendQuery);
   }
 
   componentWillUnmount() {
     TweetStore.removeListener('change', this.getTweets);
     TweetStore.removeListener('change', this.getCount);
+    InputStore.removeListener('change', this.sendQuery);
   }
 
   getTweets() {
@@ -52,12 +56,15 @@ class Tweets extends Component {
     });
   }
 
+  sendQuery() {
+    console.log('Sending query')
+    this.socket.send(JSON.stringify(InputStore.getQuery()));
+  }
+
   render() {
 
     return (
       <div>
-        <h1>Tweets</h1>
-        {/* <input on */}
         <h2>{this.state.count}</h2>
         <Tweet tweets={this.state.tweets}/>
       </div>
