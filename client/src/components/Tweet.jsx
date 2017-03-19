@@ -5,10 +5,12 @@ class Tweet extends Component {
   render() {
     return (
       <div className='tweet'>
-        <span className='tweet-screen-name'>{this.props.tweet.screen_name}</span>
+        <div className='tweet-user'>
+          <h4 className='tweet-screen-name'>{this.props.tweet.screen_name}</h4>
+          <img className='tweet-avatar' src={this.props.tweet.profile_image_url}/>
+        </div>
         <span className='tweet-content'>{this.props.tweet.text}</span>
       </div>
-
     );
   }
 }

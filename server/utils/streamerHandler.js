@@ -5,6 +5,7 @@ module.exports = function(stream, ws) {
       twid: data.id_str,
       name: data.user.name ? data.user.name : '',
       screen_name: data.user.screen_name ? data.user.screen_name : '',
+      profile_image_url: data.user.profile_image_url ? data.user.profile_image_url : '',
       followers_count: data.user.followers_count,
       text: data.text ? data.text : '',
       location: data.location ? data.location : ''
