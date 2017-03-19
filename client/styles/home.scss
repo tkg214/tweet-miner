@@ -34,38 +34,38 @@ body {
   flex: 8;
 }
 
-.message {
+.tweet {
   display: flex;
   padding: 5px;
 }
 
-.message.system {
+.tweet.system {
   font-style: italic;
   padding: 5px 20px;
 }
 
-.message-content {
+.tweet-content {
   overflow: hidden;
   margin: 5px;
   padding: 0 10px;
 }
 
-.message-image {
+.tweet-image {
   overflow: hidden;
   width: 300px;
   padding: 0 10px;
 }
 
-.message-username-1 {
+.tweet-screen-name {
   flex: 2;
   font-weight: 700;
   overflow: hidden;
   margin: 5px;
   padding: 0 10px;
-  color: blue;
+  color: rgb(0, 0, 0);
 }
 
-.message-content {
+.tweet-content {
   flex: 8;
 }
 
@@ -81,23 +81,22 @@ body {
 }
 
 .navbar-brand {
-  color: inherit;
+  color: rgb(255, 255, 255);
   display: block;
   float: left;
   font-weight: 700;
   font-size: 28px;
-  height: 60px;
   line-height: 60px;
   padding: 0 10px;
   text-decoration: none;
 }
 
-.navbar-usercount {
-  color: inherit;
+.navbar-tweetcount {
+  color: rgb(255, 255, 255);
   display: block;
   float: right;
   font-weight: 700;
-  height: 30px;
+  font-size: 28px;
   line-height: 60px;
   padding: 0 10px;
 }

@@ -22,7 +22,26 @@ class TweetStore extends EventEmitter {
   }
 
   addTweet(tweet) {
-    this.tweets.unshift(tweet);
+    if (this.tweets.length > 20) {
+      if (this.isDuplicateTweet(tweet)) {
+        return;
+      }
+      this.tweets.unshift(tweet);
+      this.tweets.pop();
+    } else {
+      if (this.isDuplicateTweet(tweet)) {
+        return;
+      }
+      this.tweets.unshift(tweet);
+    }
+  }
+
+  isDuplicateTweet(newTweet) {
+    this.tweets.forEach( (tweet) => {
+      if (newTweet.twid === tweet.twid) {
+        return true;
+      }
+    });
   }
 
   getCount() {

@@ -9,7 +9,7 @@ module.exports = function(stream, ws) {
       text: data.text ? data.text : '',
       location: data.location ? data.location : ''
     }
-
+    console.log(tweet);
     ws.send(JSON.stringify(tweet));
   });
 

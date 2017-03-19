@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Tweet from './Tweet.jsx';
+import TweetContainer from './layout/TweetContainer.jsx';
 import * as TweetActions from '../actions/TweetActions.jsx';
 import TweetStore from '../stores/TweetStore.jsx';
 import InputStore from '../stores/InputStore.jsx';
@@ -9,12 +10,10 @@ class Tweets extends Component {
   constructor() {
     super();
     this.getTweets = this.getTweets.bind(this);
-    this.getCount = this.getCount.bind(this);
     this.sendQuery = this.sendQuery.bind(this);
 
     this.state = {
-      tweets: TweetStore.getAll(),
-      count: TweetStore.getCount()
+      tweets: TweetStore.getAll()
     };
   }
 
@@ -34,25 +33,17 @@ class Tweets extends Component {
 
   componentWillMount() {
     TweetStore.on('change', this.getTweets);
-    TweetStore.on('change', this.getCount);
     InputStore.on('change', this.sendQuery);
   }
 
   componentWillUnmount() {
     TweetStore.removeListener('change', this.getTweets);
-    TweetStore.removeListener('change', this.getCount);
     InputStore.removeListener('change', this.sendQuery);
   }
 
   getTweets() {
     this.setState({
       tweets: TweetStore.getAll()
-    });
-  }
-
-  getCount() {
-    this.setState({
-      count: TweetStore.getCount()
     });
   }
 
@@ -65,8 +56,7 @@ class Tweets extends Component {
 
     return (
       <div>
-        <h2>{this.state.count}</h2>
-        <Tweet tweets={this.state.tweets}/>
+        <TweetContainer tweets={this.state.tweets}/>
       </div>
     );
   }
