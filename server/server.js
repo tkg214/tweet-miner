@@ -17,7 +17,6 @@ wss.on('connection', (ws) => {
 
   ws.on('message', (message) => {
     let query = JSON.parse(message);
-    console.log('Query received: ', query)
 
     new twitter(config.twitter).stream('statuses/filter', {track: query}, (stream) => {
       streamerHandler(stream, ws);

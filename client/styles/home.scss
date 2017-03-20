@@ -1,7 +1,6 @@
 body {
   background: white;
   color: black;
-  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
 }
 
@@ -10,72 +9,102 @@ h4 {
   margin: 0px;
 }
 
-.navbar {
-  background: rgb(3, 88, 143);
-  border-bottom: 1px solid black;
-  height: 60px;
-  left: 0;
-  padding: 0 10px;
-  position: fixed;
-  right: 0;
-  top: 0;
+.show {
+  display: block;
+}
 
-  .navbar-brand, .navbar-tweetcount {
+.hidden {
+  display: none;
+}
+
+.high {
+  opacity: 1;
+}
+
+.low {
+  opacity: .7;
+}
+
+.navbar {
+  height: 60px;
+
+  .navbar-brand {
+    float: none;
+  }
+
+  .brand, .stats {
     color: rgb(255, 255, 255);
     display: block;
     font-weight: 700;
     font-size: 28px;
     line-height: 60px;
-    padding: 0 10px;
-    text-decoration: none;
+    padding: 0 20px;
   }
 
-  .navbar-brand {
+  .brand {
     float: left;
   }
 
-  .navbar-tweetcount {
+  .stats {
+    font-size: 20px;
     float: right;
-  }
-
-  .navbar-stop {
-    background-color: rgb(219, 49, 3);
-    border: 1px solid black;
-    border-radius: 5px;
-    color: rgb(255, 255, 255);
-    display: block;
-    float: right;
-    font-weight: 700;
-    font-size: 28px;
-    padding: 5px;
-    margin: 5.75px;
-  }
-
-  .input-query {
-    border: 1px solid black;
-    display: block;
-    float: right;
-    height: 40px;
-    margin: 5.75px;
-    padding: 0 10px;
   }
 }
 
+.home-brand {
+  color: rgb(255, 255, 255);
+  float: left;
+  font-weight: 700;
+  font-size: 50px;
+  margin-top: 15px;
+}
+
+.home-icon {
+  float: left;
+
+  img {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+.search-bar {
+  border-radius: 5px;
+  left: 50%;
+  position: absolute;
+  top: 40%;
+  transform: translate(-50%, -50%);
+}
+
+.search-input {
+  border-radius: 5px;
+}
+
+
 .tweet-container {
-  margin-top: 61.5px;
+  background-color: #2b3e50;
+  margin-top: 60px;
   overflow: auto;
   width: 40%;
 }
 
 .stop-button {
+  background-color: rgb(219, 49, 3);
+  border: 1px solid black;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  display: block;
+  font-weight: 700;
+  font-size: 28px;
+  left: 42%;
+  padding: 5px;
   position: fixed;
-  float: right;
-  margin-top: 70px;
+  top: 70px;
 }
 
 .tweet {
+  background: white;
   border: 1px solid black;
-  border-radius: 5px;
   display: flex;
   margin: 5px;
   overflow: hidden;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Tweets from '../Tweets.jsx';
+import Streamer from '../Streamer.jsx';
 import Navbar from './Navbar.jsx';
+import Searchbar from '../Searchbar.jsx';
 
 class Layout extends Component {
 
@@ -8,7 +9,8 @@ class Layout extends Component {
     return (
       <div>
         <Navbar/>
-        <Tweets/>
+        <Searchbar/>
+        <Streamer/>
       </div>
     );
   }

@@ -5,8 +5,10 @@ import * as TweetActions from '../actions/TweetActions.jsx';
 import TweetStore from '../stores/TweetStore.jsx';
 import InputStore from '../stores/InputStore.jsx';
 import UtilityStore from '../stores/UtilityStore.jsx';
+import StopButton from './StopButton.jsx';
 
-class Tweets extends Component {
+
+class Streamer extends Component {
 
   constructor() {
     super();
@@ -15,7 +17,8 @@ class Tweets extends Component {
     this.stopStream = this.stopStream.bind(this);
 
     this.state = {
-      tweets: TweetStore.getAll()
+      tweets: TweetStore.getAll(),
+      visibility: 'hide'
     };
   }
 
@@ -29,7 +32,6 @@ class Tweets extends Component {
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
       TweetActions.addTweet(data);
-      TweetActions.addCount();
     }
   }
 
@@ -47,6 +49,7 @@ class Tweets extends Component {
 
   getTweets() {
     this.setState({
+      visibility: 'show',
       tweets: TweetStore.getAll()
     });
   }
@@ -60,13 +63,15 @@ class Tweets extends Component {
     this.socket.close(1000, 'Stopping Stream');
   }
 
+
   render() {
     return (
-      <div>
+      <div className={this.state.visibility}>
+        <StopButton/>
         <TweetContainer tweets={this.state.tweets}/>
       </div>
     );
   }
 }
 
-export default Tweets;
+export default Streamer;

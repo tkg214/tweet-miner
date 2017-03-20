@@ -11,10 +11,12 @@ class TweetStore extends EventEmitter {
         name: '',
         screen_name: '',
         followers_count: 0,
-        location: ''
+        location: '',
+        importance: ''
       }
     ];
     this.count = 0;
+    this.totalFollowers = 0;
   }
 
   getAll() {
@@ -26,13 +28,19 @@ class TweetStore extends EventEmitter {
       if (this.isDuplicateTweet(tweet)) {
         return;
       }
+      tweet.importance = this.categorizeTweet(tweet.followers_count)
       this.tweets.unshift(tweet);
       this.tweets.pop();
+      this.totalFollowers += tweet.followers_count;
+      this.count++;
     } else {
       if (this.isDuplicateTweet(tweet)) {
         return;
       }
+      tweet.importance = this.categorizeTweet(tweet.followers_count)
       this.tweets.unshift(tweet);
+      this.count++;
+      this.totalFollowers += tweet.followers_count;
     }
   }
 
@@ -44,22 +52,26 @@ class TweetStore extends EventEmitter {
     });
   }
 
+  categorizeTweet(followers) {
+    if (followers > 10000) {
+      return 'high';
+    } else {
+      return 'low';
+    }
+  }
+
   getCount() {
     return this.count;
   }
 
-  addCount() {
-    this.count++;
+  getTotalFollowers() {
+    return this.totalFollowers;
   }
 
   handleActions(action) {
     switch(action.type) {
       case 'ADD_TWEET': {
         this.addTweet(action.tweet);
-        break;
-      }
-      case 'ADD_COUNT': {
-        this.addCount();
         this.emit('change');
         break;
       }

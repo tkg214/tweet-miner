@@ -4,7 +4,7 @@ class Tweet extends Component {
 
   render() {
     return (
-      <div className='tweet'>
+      <div className={`${this.props.tweet.importance} tweet`}>
         <div className='tweet-user'>
           <h4 className='tweet-screen-name'>{this.props.tweet.screen_name}</h4>
           <img className='tweet-avatar' src={this.props.tweet.profile_image_url}/>

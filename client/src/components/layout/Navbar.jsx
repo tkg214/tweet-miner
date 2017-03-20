@@ -1,61 +1,70 @@
 import React, { Component } from 'react';
 import * as TweetActions from '../../actions/TweetActions.jsx';
-import * as InputActions from '../../actions/InputActions.jsx';
-import * as UtilityActions from '../../actions/UtilityActions.jsx';
 
 import TweetStore from '../../stores/TweetStore.jsx';
+import InputStore from '../../stores/InputStore.jsx';
 
 class Navbar extends Component {
 
   constructor() {
     super();
     this.getCount = this.getCount.bind(this);
+    this.getTotalFollowers = this.getTotalFollowers.bind(this);
+    this.getQuery = this.getQuery.bind(this);
 
     this.state = {
-      count: TweetStore.getCount()
+      count: TweetStore.getCount(),
+      totalFollowers: TweetStore.getTotalFollowers(),
+      visibility: 'hide',
+      query: ''
     }
   }
 
   componentWillMount() {
     TweetStore.on('change', this.getCount);
+    TweetStore.on('change', this.getTotalFollowers);
+    InputStore.on('change', this.getQuery);
   }
 
   componentWillUnmount() {
     TweetStore.removeListener('change', this.getCount);
-  }
-
-  sendQuery(e) {
-    if (e.key === 'Enter') {
-      InputActions.sendQuery(e.target.value)
-    }
+    TweetStore.removeListener('change', this.getTotalFollowers);
+    InputStore.removeListener('change', this.getQuery);
   }
 
   getCount() {
     this.setState({
-      count: TweetStore.getCount()
+      count: TweetStore.getCount(),
+      visibility: 'show'
     });
   }
 
-  stopRequest() {
-    UtilityActions.stopRequest();
+  getQuery() {
+    this.setState({
+      query: InputStore.getQuery(),
+      visibility: 'show'
+    })
+  }
+
+  getTotalFollowers() {
+    this.setState({
+      totalFollowers: TweetStore.getTotalFollowers(),
+      visibility: 'show'
+    })
   }
 
   render() {
     return (
-      <nav className='navbar'>
-        <a href='/' className='navbar-brand'>Twitter Bot</a>
-        <input
-          className='input-query'
-          type='text'
-          placeholder='Enter a Query'
-          onKeyUp={this.sendQuery.bind(this)}
-        />
-        <span className='navbar-tweetcount'>{this.state.count}</span>
-        <button
-          className='navbar-stop'
-          onClick={this.stopRequest.bind(this)}
-          >Stop</button>
-      </nav>
+      <div className={this.state.visibility}>
+      <div className='navbar navbar-default navbar-fixed-top'>
+        <div className='container'>
+          <span className='navbar-brand brand'>Twitter Bot</span>
+          <span className='navbar-brand stats'>Reach: {this.state.totalFollowers}</span>
+          <span className='navbar-brand stats'>Tweets: {this.state.count}</span>
+          <span className='navbar-brand stats'>{this.state.query}</span>
+        </div>
+      </div>
+    </div>
     )
   }
 }

@@ -6,9 +6,3 @@ export function addTweet(tweet) {
     tweet: tweet
   });
 }
-
-export function addCount() {
-  dispatcher.dispatch({
-    type: 'ADD_COUNT'
-  });
-}
