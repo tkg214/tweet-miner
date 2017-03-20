@@ -1,5 +1,5 @@
 body {
-  background: white;
+  background: slategrey;
   color: black;
   font-size: 14px;
 }
@@ -86,6 +86,14 @@ h4 {
   margin-top: 60px;
   overflow: auto;
   width: 40%;
+}
+
+.data-visual-container {
+  background-color: #2b3e50;
+  margin-top: 60px;
+  overflow: auto;
+  width: 60%;
+  right: 0;
 }
 
 .stop-button {

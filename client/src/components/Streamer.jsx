@@ -6,7 +6,7 @@ import TweetStore from '../stores/TweetStore.jsx';
 import InputStore from '../stores/InputStore.jsx';
 import UtilityStore from '../stores/UtilityStore.jsx';
 import StopButton from './StopButton.jsx';
-
+import DataVisualContainer from './layout/DataVisualContainer.jsx'
 
 class Streamer extends Component {
 
@@ -67,8 +67,8 @@ class Streamer extends Component {
   render() {
     return (
       <div className={this.state.visibility}>
-        <StopButton/>
         <TweetContainer tweets={this.state.tweets}/>
+        <StopButton/>
       </div>
     );
   }
