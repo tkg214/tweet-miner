@@ -58,7 +58,8 @@ class Navbar extends Component {
       <div className={this.state.visibility}>
       <div className='navbar navbar-default navbar-fixed-top'>
         <div className='container'>
-          <span className='navbar-brand brand'>Twitter Bot</span>
+          <span className='navbar-brand brand'>Tweet Miner</span>
+          <span className='navbar-icon'><img src='https://abs.twimg.com/icons/apple-touch-icon-192x192.png'/></span>
           <span className='navbar-brand stats'>Reach: {this.state.totalFollowers}</span>
           <span className='navbar-brand stats'>Tweets: {this.state.count}</span>
           <span className='navbar-brand stats'>{this.state.query}</span>
