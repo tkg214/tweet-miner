@@ -1,5 +1,8 @@
 const express = require('express');
 const SocketServer = require('ws').Server;
+const twitter = require('twitter');
+const config = require('./config')
+const streamerHandler = require('./utils/streamerHandler');
 
 const PORT = 3001;
 
@@ -13,12 +16,15 @@ wss.on('connection', (ws) => {
   console.log('Client connected');
 
   ws.on('message', (message) => {
-    wss.clients.forEach(function each(client) {
-      client.send(JSON.stringify(tweet));
-    });
-  });
+    let query = JSON.parse(message);
 
-  ws.on('close', () => {
-  console.log('Client disconnected');
+    new twitter(config.twitter).stream('statuses/filter', {track: query}, (stream) => {
+      streamerHandler(stream, ws);
+
+      ws.on('close', () => {
+        console.log('Client disconnected');
+        stream.destroy();
+      })
+    });
   });
 });
